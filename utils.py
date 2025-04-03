@@ -44,11 +44,11 @@ def read_csv_file(csv_file: str):
 
 def remove_duplactes(df):
     df = df.drop_duplicates()
-    df = df.drop_duplicates('name')
+    df.drop_duplicates('name', inplace=True)
     return df
 
 def rename_column(df):
-    df.rename(columns={df.columns[3]: 'name'})
+    df = df.rename(columns={df.columns[3]: 'name'})
     return df
 
 
@@ -80,7 +80,7 @@ def encode_categories(df):
     labelEconder = LabelEncoder()
     df['encoded_gender'] = labelEconder.fit_transform(df[['gender']])
     df['encoded_embarked'] = labelEconder.fit_transform(df[['embarked']])
-    df
+    return df
 
 
 def store_preprocessed_data(df, dest_path):

@@ -7,6 +7,6 @@ if __name__ =="__main__":
     df = read_csv_file('./datasets/raw_data/The Titanic dataset.csv')
     df = rename_column(df)
     df = remove_duplactes(df)
-    # df = fill_null_values(df)
-    # df = encode_categories(df)
+    df = fill_null_values(df)
+    df = encode_categories(df)
     print(df.head(10))
