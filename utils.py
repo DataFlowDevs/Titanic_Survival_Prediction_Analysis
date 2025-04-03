@@ -85,4 +85,5 @@ def encode_categories(df):
 
 def store_preprocessed_data(df, dest_path):
     df.to_csv(dest_path)
+
     
