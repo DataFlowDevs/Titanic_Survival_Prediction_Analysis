@@ -11,7 +11,7 @@ def extract(kaggle_url, raw_data_dir):
 def transform(df):
     print("Transforming data...")
     df = rename_column(df)
-    df = remove_duplactes(df)
+    df = remove_duplicates(df)
     df = fill_null_values(df)
     df = encode_categories(df)
     return df
