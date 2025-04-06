@@ -7,9 +7,16 @@ import seaborn as sns
 
 # Load the preprocessed Titanic dataset
 stage_data = pd.read_csv("./datasets/preprocessed_dataset/stage_data.csv")
-embarked_pclass = pd.read_csv("./datasets/eda_outputs/embarked_pclass.csv", index_col=0)
-embarked_stats = pd.read_csv("./datasets/eda_outputs/embarked_stats.csv")
-family_class_survival = pd.read_csv("./datasets/eda_outputs/family_class_survival.csv")
+embarked_pclass = pd.read_csv("./datasets/results/embarked_pclass.csv", index_col=0)
+embarked_stats = pd.read_csv("./datasets/results//embarked_stats.csv")
+family_class_survival = pd.read_csv("./datasets/results//family_class_survival.csv")
+
+output_dir = "./datasets/results/images"
+
+def save_plot(filename):
+    plt.tight_layout()
+    plt.savefig(os.path.join(output_dir, filename))
+    plt.close()
 
 plt.figure(figsize=(8, 6))
 sns.barplot(x='pclass', y='survived', data=stage_data, hue='pclass', palette='Set2')   
@@ -17,7 +24,7 @@ plt.title('Average Survival Rate by Passenger Class')
 plt.ylabel('Survival Rate')
 plt.xlabel('Passenger Class')
 plt.ylim(0, 1)
-plt.show()
+save_plot("survival_rate_by_pclass.png")
 
 
 plt.figure(figsize=(8, 6))
@@ -26,7 +33,7 @@ plt.title('Average Survival Rate by Gender')
 plt.ylabel('Survival Rate')
 plt.xlabel('Gender')
 plt.ylim(0, 1)
-plt.show()
+save_plot("survival_rate_by_gender.png")
 
 
 age_bins = np.arange(0, stage_data['age'].max() + 10, 10)  # Creating age bins of 10 years
@@ -44,7 +51,7 @@ plt.ylabel('Survival Rate')
 plt.xlabel('Age Group')
 plt.xticks(rotation=45)
 plt.ylim(0, 1)
-plt.show()
+save_plot("survival_rate_by_age_group.png")
 
 
 plt.figure(figsize=(10, 6))
@@ -53,7 +60,7 @@ plt.title('Survival by Passenger Class')
 plt.ylabel('Count')
 plt.xlabel('Passanger Class')
 plt.ylim(0, 1)
-plt.show()
+save_plot("survival_by_passenger_class.png")
 
 relevant_features = ['pclass', 'age', 'gender', 'survived']
 data = stage_data[relevant_features].copy()
@@ -62,14 +69,14 @@ correlation_matrix = data.corr()
 plt.figure(figsize=(8, 6))
 sns.heatmap(correlation_matrix, annot=True, fmt=".2f", cmap="coolwarm", cbar=True)
 plt.title('Correlation Heatmap of Relevant Features (with One-Hot Encoded Gender)')
-plt.show()
+save_plot("correlation_heatmap.png")
 
 plt.figure(figsize=(10, 6))
 sns.heatmap(embarked_pclass, annot=True, cmap='Blues', fmt='d', cbar=False)
 plt.title('Count of Passengers by Embarkation Port and Passenger Class')
 plt.ylabel('Embarkation Port')
 plt.xlabel('Passenger Class')
-plt.show()
+save_plot("embarked_vs_pclass_heatmap.png")
 
 # Bar plot for survival statistics by embarkation port
 embarked_stats = embarked_stats.reset_index()  # Reset index to make 'embarked' a column for plotting
@@ -81,7 +88,7 @@ sns.barplot(x='embarked', y='Value', hue='Metric', data=embarked_stats_melted, p
 plt.title('Survival Statistics by Embarkation Port')
 plt.ylabel('Value')
 plt.xlabel('Embarkation Port')
-plt.show()
+save_plot("embarked_survival_stats.png")
 
 # Plotting the survival statistics for different family sizes
 plt.figure(figsize=(10, 6))
@@ -90,7 +97,7 @@ plt.title('Survival Rate by Family Size')
 plt.ylabel('Value')
 plt.xlabel('Family Size')
 plt.legend()
-plt.show()
+save_plot("survival_rate_by_family_size.png")
 
 # Group by passenger class and calculate the mean fare
 pclass_fare = stage_data.groupby('pclass')['fare'].mean().reset_index()
@@ -101,4 +108,4 @@ sns.barplot(x='pclass', y='fare', data=pclass_fare, palette='Set2')
 plt.title('Average Fare by Passenger Class')
 plt.ylabel('Average Fare')
 plt.xlabel('Passenger Class')
-plt.show()
+save_plot("average_fare_by_pclass.png")
