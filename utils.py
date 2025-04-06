@@ -42,7 +42,7 @@ def read_csv_file(csv_file: str):
     df = pd.read_csv(csv_file, header = 1)
     return df
 
-def remove_duplactes(df):
+def remove_duplicates(df):
     df = df.drop_duplicates()
     df.drop_duplicates('name', inplace=True)
     return df
