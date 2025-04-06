@@ -4,7 +4,7 @@ from utils import *
 def preprocess_data(df):
     print("Cleaning and preprocessing data...")
     df = rename_column(df)
-    df = remove_duplactes(df)
+    df = remove_duplicates(df)
     df = fill_null_values(df)
     df = encode_categories(df)
     return df
