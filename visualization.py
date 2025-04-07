@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-
+import os
 
 
 # Load the preprocessed Titanic dataset
@@ -104,7 +104,7 @@ pclass_fare = stage_data.groupby('pclass')['fare'].mean().reset_index()
 
 # Plotting the average fare by passenger class
 plt.figure(figsize=(10, 6))
-sns.barplot(x='pclass', y='fare', data=pclass_fare, palette='Set2')
+sns.barplot(x='pclass', y='fare', data=pclass_fare)
 plt.title('Average Fare by Passenger Class')
 plt.ylabel('Average Fare')
 plt.xlabel('Passenger Class')
