@@ -10,7 +10,7 @@ def preprocess_data(df):
     return df
 
 if __name__ =="__main__":
-    RAW_DATA_FILE = './datasets/raw_data/The Titanic dataset.csv'
+    RAW_DATA_FILE = '../datasets/raw_data/The Titanic dataset.csv'
     df = read_csv_file(RAW_DATA_FILE)
     preprocess_data(df)
     print(df.head(10))

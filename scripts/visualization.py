@@ -6,12 +6,12 @@ import os
 
 
 # Load the preprocessed Titanic dataset
-stage_data = pd.read_csv("./datasets/preprocessed_dataset/stage_data.csv")
-embarked_pclass = pd.read_csv("./datasets/results/embarked_pclass.csv", index_col=0)
-embarked_stats = pd.read_csv("./datasets/results//embarked_stats.csv")
-family_class_survival = pd.read_csv("./datasets/results//family_class_survival.csv")
+stage_data = pd.read_csv("../datasets/preprocessed_dataset/stage_data.csv")
+embarked_pclass = pd.read_csv("../datasets/results/embarked_pclass.csv", index_col=0)
+embarked_stats = pd.read_csv("../datasets/results//embarked_stats.csv")
+family_class_survival = pd.read_csv("../datasets/results//family_class_survival.csv")
 
-output_dir = "./datasets/results/images"
+output_dir = "../datasets/results/images"
 
 def save_plot(filename):
     plt.tight_layout()
