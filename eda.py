@@ -33,7 +33,7 @@ survival_by_fare.to_csv("./datasets/results/survival_by_fare.csv", index=False)
 
 # Embarkation analysis: passenger count, survival count, and survival rate
 embarked_stats = the_titanic_df.groupby('embarked').agg(
-    stotal_passengers=('survived', 'count'),
+    total_passengers=('survived', 'count'),
     survivors=('survived', 'sum'),
     survivor_rate=('survived', 'mean')
 )
